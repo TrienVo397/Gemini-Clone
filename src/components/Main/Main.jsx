@@ -8,14 +8,15 @@ console.log('Context value:', ctx);
 
 
   const{onSent,
-     recentPrompts, 
-     setRecentPrompts, 
+     recentPrompt, 
+     setrecentPrompt, 
      showResult, 
      loading, 
      resultData, 
      input, 
      setInput} = useContext(Context)
-
+     
+console.log('Recent prompt:', recentPrompt);
   return (
     <div className="main">
       <div className="nav">
@@ -50,11 +51,20 @@ console.log('Context value:', ctx);
         </div></>: <div className='result'>
           <div className="result-title">
             <img src={assets.user_icon} alt="" />
-            <p>{recentPrompts}</p>
+            <p>{recentPrompt}</p>
           </div>
           <div className="result-data">
             <img src={assets.gemini_icon} alt="" />
-            <p dangerouslySetInnerHTML={{__html:resultData}}></p>
+            {/* loading as result is being generated */}
+            {loading?
+            <div className='loader'>
+              <hr />
+              <hr />
+              <hr />
+            </div> :
+             <p dangerouslySetInnerHTML={{__html:resultData}}></p>
+
+            }
           </div>
         </div>
         }
