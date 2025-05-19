@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import './Main.css'
 import { assets } from '../../assets/assets'
 import {Context} from '../../context/Context'
+import {marked}  from 'marked'
 const Main = () => {
   const ctx = useContext(Context);
 console.log('Context value:', ctx);
@@ -62,7 +63,7 @@ console.log('Recent prompt:', recentPrompt);
               <hr />
               <hr />
             </div> :
-             <p dangerouslySetInnerHTML={{__html:resultData}}></p>
+             <p dangerouslySetInnerHTML={{__html:marked(resultData)}}></p>
 
             }
           </div>
@@ -72,7 +73,12 @@ console.log('Recent prompt:', recentPrompt);
         <div className="main-bottom">
           <div className="search-box">
             {/* input field */}
-            <input onChange={(e)=>setInput(e.target.value)} value={input} type="text" placeholder='Enter a prompt here' /> 
+            <input onKeyDown={(e) =>{
+              if(e.key === "Enter")
+                onSent();
+            }} onChange={(e)=>setInput(e.target.value)} value={input} type="text" placeholder='Enter a prompt here' /> 
+
+     
             <div>
               <img src={assets.gallery_icon} alt="" />
               <img src={assets.mic_icon} alt="" />

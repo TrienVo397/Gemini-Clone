@@ -1,6 +1,10 @@
 import { createContext,useState } from "react";
 import runChat from "../config/gemini.js"; 
 
+
+const delayPara =(index, nextWord) =>{
+
+}
 export const Context = createContext();
 
 const ContextProvider = (props) =>{
@@ -17,6 +21,7 @@ const ContextProvider = (props) =>{
         setShowResult(true);
         setRecentPrompt(input)
         const response = await runChat(input);
+ 
         setResultData(response);
         setLoading(false);
         setInput("");
