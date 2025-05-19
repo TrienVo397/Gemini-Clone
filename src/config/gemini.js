@@ -29,7 +29,7 @@ async function runChat(prompt) {
     contents,
   });
 
-  let output = '';
+let output = '';
  for await (const chunk of response) {
   output += chunk.text;
   // ❌ Don't use process.stdout.write in browser
