@@ -32,9 +32,9 @@ async function runChat(prompt) {
 let output = '';
  for await (const chunk of response) {
   output += chunk.text;
+  console.log(output); // ✅ Use this instead
   // ❌ Don't use process.stdout.write in browser
 }
-  console.log(output); // ✅ Use this instead
 
 
   return output;
